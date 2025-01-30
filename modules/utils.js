@@ -48,7 +48,7 @@ class GreetUser {
     }
 
     greet() {
-        return `<h2 style="color: blue;">${messages.message.getDateMsg.replace(textToReplace, this.getUrlParam.grabUserName())}${Date()}</h2>`;
+        return `<h1 style="color: blue;">${messages.message.getDateMsg.replace(textToReplace, this.getUrlParam.grabUserName())}${Date()}</h1>`;
     }
 }
 
@@ -62,15 +62,15 @@ class FileControler {
         const textToWrite = this.getUrlParam.grabTextToWrite();
         
         if (!textToWrite) {
-            callback(messages.message.textToWriteNotFound);
+            callback(`<h1>${messages.message.textToWriteNotFound}<h1>`);
             return;
         }
     
         fs.appendFile(myFileName, textToWrite + newLine, (err) => {
             if (err) {
-                callback(messages.message.fileWriteError);
+                callback(`<h1>${messages.message.fileWriteError}</h1>`);
             } else {
-                const msg = messages.message.writeSuccessMsg.replace(textToReplace, textToWrite);
+                const msg = `<h1>${messages.message.writeSuccessMsg.replace(textToReplace, textToWrite)}</h1>`;
                 callback(msg);
             }
         });
@@ -80,7 +80,7 @@ class FileControler {
     readFromFile(callback) {
         fs.readFile(myFileName, charSet, (err, data) => {
             if (err) {
-                callback(`${messages.message.fileNotFound}`);
+                callback(`<h1>${messages.message.fileNotFound}</h1>`);
             } else {
                 callback(data);
             }
