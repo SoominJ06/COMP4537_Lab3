@@ -62,7 +62,7 @@ class FileControler {
         const textToWrite = this.getUrlParam.grabTextToWrite();
         
         if (!textToWrite) {
-            callback(`<h1>${messages.message.textToWriteNotFound}<h1>`);
+            callback(`<h1>${messages.message.textToWriteNotFound}</h1>`);
             return;
         }
     
