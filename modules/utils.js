@@ -27,6 +27,10 @@ class ParseReqParam {
         return url.parse(this.grabCurrUrl(), true).query;
     }
 
+    grabPathSegments() {
+        return url.parse(this.grabCurrUrl(), true).pathname.split('/');
+    }
+
     grabUserName() {
         const parsedData = this.grabParsedUrl();
         return parsedData.name ? parsedData.name : emptyString;
@@ -35,6 +39,11 @@ class ParseReqParam {
     grabTextToWrite() {
         const parsedData = this.grabParsedUrl();
         return parsedData.text ? parsedData.text : emptyString;
+    }
+
+    grabFileName() {
+        const parsedSegments = this.grabPathSegments();
+        return parsedSegments[parsedSegments.length - 1] ? parsedSegments[parsedSegments.length - 1] : myFileName;
     }
 }
 
@@ -78,13 +87,24 @@ class FileControler {
     
     // Using callback to handle the asynchronous behavior of fs.readFile()
     readFromFile(callback) {
-        fs.readFile(myFileName, charSet, (err, data) => {
+        const reqFileName = this.getUrlParam.grabFileName();
+        fs.readFile(reqFileName, charSet, (err, data) => {
             if (err) {
-                callback(`<h1>${messages.message.fileNotFound}</h1>`);
+                callback(this.insertReadFileError(reqFileName));
             } else {
                 callback(data);
             }
         });
+    }
+
+    insertReadFileError(fileName) {
+        if (fileName === myFileName) {
+            return `<h1>${messages.message.fileIsEmpty}</h1>`;
+        } else if (fileName === "readFile") {
+            return `<h1>${messages.message.badRequestMsg}</h1>`;
+        } else {
+            return `<h1>${messages.message.fileNotFound.replace(textToReplace, fileName)}</h1>`;
+        }
     }
 }
 
