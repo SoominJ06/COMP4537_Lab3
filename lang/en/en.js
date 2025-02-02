@@ -6,7 +6,7 @@ const message = {
     fileIsEmpty: "file.txt is empty",
     textToWriteNotFound: "No text was appended to file.txt",
     fileWriteError: "Error: Unable to write to file",
-    writeSuccessMsg: "%1 was successfully written in the file"
+    writeSuccessMsg: "%1 was successfully written in file.txt"
 }
 
 module.exports = {message};
