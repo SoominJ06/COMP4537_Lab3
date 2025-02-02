@@ -7,6 +7,7 @@ const messages = require('../lang/en/en.js');
 
 // File consts
 const myFileName = "file.txt";
+const readFileFunc = "readFile";
 
 // String consts
 const emptyString = "";
@@ -43,7 +44,7 @@ class ParseReqParam {
 
     grabFileName() {
         const parsedSegments = this.grabPathSegments();
-        return parsedSegments[parsedSegments.length - 1] ? parsedSegments[parsedSegments.length - 1] : myFileName;
+        return parsedSegments[parsedSegments.length - 1] ? parsedSegments[parsedSegments.length - 1] : emptyString;
     }
 }
 
@@ -100,7 +101,7 @@ class FileControler {
     insertReadFileError(fileName) {
         if (fileName === myFileName) {
             return `<h1>${messages.message.fileIsEmpty}</h1>`;
-        } else if (fileName === "readFile") {
+        } else if (fileName === readFileFunc || fileName === emptyString) {
             return `<h1>${messages.message.badRequestMsg}${messages.message.fileRequestNotFound}</h1>`;
         } else {
             return `<h1>${messages.message.fileNotFound.replace(textToReplace, fileName)}</h1>`;
