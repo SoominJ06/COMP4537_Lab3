@@ -101,7 +101,7 @@ class FileControler {
         if (fileName === myFileName) {
             return `<h1>${messages.message.fileIsEmpty}</h1>`;
         } else if (fileName === "readFile") {
-            return `<h1>${messages.message.badRequestMsg}</h1>`;
+            return `<h1>${messages.message.badRequestMsg}${messages.message.fileRequestNotFound}</h1>`;
         } else {
             return `<h1>${messages.message.fileNotFound.replace(textToReplace, fileName)}</h1>`;
         }
