@@ -25,11 +25,11 @@ class ParseReqParam {
     }
 
     grabParsedUrl() {
-        return url.parse(this.grabCurrUrl(), true).query;
+        return url.parse(this.grabCurrUrl(), true).query; // Grabs everything after the ?
     }
 
     grabPathSegments() {
-        return url.parse(this.grabCurrUrl(), true).pathname.split('/');
+        return url.parse(this.grabCurrUrl(), true).pathname.split('/'); // Grabs everything after the ?
     }
 
     grabUserName() {
