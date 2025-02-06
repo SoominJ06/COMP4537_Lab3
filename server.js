@@ -17,12 +17,12 @@ http.createServer(function(req, res) {
     
     } else if (currPath.includes("writeFile")) {
         fileController.writeToFile((msg) => {
-            res.end(msg);
+            res.end(msg); // Executes after the file operation is finished
         });
 
     } else if (currPath.includes("readFile")) {
         fileController.readFromFile((data) => {
-            res.end(data);
+            res.end(data); // Executes after the file operation is finished
         });
 
     } else {

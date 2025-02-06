@@ -29,7 +29,7 @@ class ParseReqParam {
     }
 
     grabPathSegments() {
-        return url.parse(this.grabCurrUrl(), true).pathname.split('/'); // Grabs everything after the ?
+        return url.parse(this.grabCurrUrl(), true).pathname.split('/'); // Grabs everything before the ?
     }
 
     grabUserName() {
